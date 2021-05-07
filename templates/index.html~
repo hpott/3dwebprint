@@ -1,0 +1,10 @@
+<html>
+  <head><title>3D Printer Interface</title></head>
+  <body>
+    <h1>3D Printer Web Interface</h1>
+    <ol>
+      <li><a href="/upload">Upload .STL Files</a></li>
+      <li><a href="/files">Download .STL files<a></li>
+    </ol>
+  </body>
+</html>
