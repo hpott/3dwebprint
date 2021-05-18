@@ -26,25 +26,29 @@
 	</div>
       </div>
     </nav>
-    <h1 align="center">Files</h1>
-    <table class="table table-striped">
-      <thead>
-	<tr>
-	  <th>Submitted By</th>
-	  <th>Quality</th>
-	  <th>Filename</th>
-	  <th>Actions</th>
-	</tr>
-      </thead>
-      <tbody>
-	{% for row in data %}
-	<tr>
-	  <td>{{row[0]}}</td>
-	  <td>{{row[1]}}</td>
-	  <td>{{row[2]}}</td>
-	  <td><a class="btn btn-outline-primary" href="/download/{{row[2]}}">Download</a> <a class="btn btn-outline-danger" href="/delete/{{row[2]}}">Delete</a></td>
-	</tr>
-	
-	{% endfor %}  
+    <div class="container">
+      <h1>Files</h1>
+      <p>Logged in as <strong>admin</strong>. <a href="/logout">Logout</a></p>
+      <table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>Submitted By</th>
+	    <th>Quality</th>
+	    <th>Filename</th>
+	    <th>Actions</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  {% for row in data %}
+	  <tr>
+	    <td>{{row[0]}}</td>
+	    <td>{{row[1]}}</td>
+	    <td>{{row[2]}}</td>
+	    <td><a class="btn btn-outline-primary" href="/download/{{row[2]}}">Download</a> <a class="btn btn-outline-danger" href="/delete/{{row[2]}}">Delete</a></td>
+	  </tr>
+	  
+	  {% endfor %}
+      </table>    
+    </div>    
   </body>
 </html>

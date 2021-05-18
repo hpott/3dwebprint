@@ -30,31 +30,17 @@
       </div>
     </nav>
     <br>
-    <div class="container">
-      <h1>Print</h1>
-      <form class="mb-3" action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
-	<div class="row g-3">
-	  <div class="col-md-4">
-	    <label class="form-label" for="file">File</label>
-            <input type="file" id="file" name="file" class="form-control" required="true">
-	  </div>
-	  <div class="col-md-4">
-	    <label class="form-label" for="username">Name</label>
-	    <input type="text" class="form-control" name="username" id="username" required="true">
-	  </div>
-	  <div class="col-md-4">
-	    <label class="form-label" for="quality">Quality</label>
-	    <select id="quality" type="select" name="quality" class="form-control form-select" required="true">
-	      <option value="low">Low</option>
-	      <option value="medium">Medium</option>
-	      <option value="high">High</option>
-	    </select>
-	  </div>
+    <div>
+      <form action = "/files" method = "POST" enctype = "multipart/form-data">
+	<div class="form-floating">
+	  <input id="usernameInput" type="username" name="username">
+	  <label for="usernameInput">Username</label>
 	</div>
-	
-	<br>
-	<button type = "submit" class="btn btn-primary">Upload</button>
+	<div class="form-floating">
+	  <input id="passwordInput" type="password" name="password">
+	  <label for="passwordInput">Password</label>
+	</div>
+	<button class="btn btn-primary" type="submit">Log In</button>
       </form>
-    </div>
   </body>
 </html>

@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, send_from_directory, redirect, url_for 
+from flask import Flask, render_template, request, send_from_directory, redirect, url_for, session
 import sqlite3 as sql
 import os
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
+
+      
 @app.route('/')
 def homepage():
    return render_template('index.html')
@@ -30,15 +33,39 @@ def upload_file():
       else:
          return 'not an STL file. try again. <a href=/upload>go back</a>'
 
-@app.route('/files')
+@app.route('/files', methods = ['GET', 'POST'])
 def list_files():
-   db  = sql.connect("printer.db")
-   head = db.cursor()
-   head.execute("select * from files")
-   rows=head.fetchall()
-   print(rows)
+   if request.method == 'POST':
+      if request.form['password'] == 'password' and request.form['username'] == 'admin':
+         session['loggedin'] = True
+         return redirect(url_for('list_files'))
+
+   #   elif session['loggedin']:
+         
+        # db  = sql.connect("printer.db")
+        # head = db.cursor()
+        # head.execute("select * from files") 
+        # rows=head.fetchall()
+        # print(rows)
+        # return render_template('list.html', data=rows)
+      else:
+         return "password incorrect"
+   else:
+      if not 'loggedin' in session:
+         return render_template('login.html')
+      else:
+         db  = sql.connect("printer.db")
+         head = db.cursor()
+         head.execute("select * from files") 
+         rows=head.fetchall()
+         print(rows)
+         return render_template('list.html', data=rows)
+
+@app.route('/logout')
+def logout():
+   session.pop('loggedin', None)
+   return redirect(url_for('list_files'))
       
-   return render_template('list.html', data=rows)
 
 @app.route('/download/<filename>', methods = ['GET'])
 def download_file(filename):
