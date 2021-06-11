@@ -33,7 +33,7 @@
     <div class="container">
       <h1>Print</h1>
       <form class="mb-3" action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
-	<div class="row g-3">
+	<div class="row g-">
 	  <div class="col-md-4">
 	    <label class="form-label" for="file">File</label>
             <input type="file" id="file" name="file" class="form-control" required="true">
@@ -41,6 +41,10 @@
 	  <div class="col-md-4">
 	    <label class="form-label" for="username">Name</label>
 	    <input type="text" class="form-control" name="username" id="username" required="true">
+	  </div>
+	  <div class="col-md-4">
+	    <label class="form-label" for="email">Email Address</label>
+	    <input type="email" class="form-control" name="email" id="email" required="true">
 	  </div>
 	  <div class="col-md-4">
 	    <label class="form-label" for="quality">Quality</label>

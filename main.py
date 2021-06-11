@@ -23,13 +23,14 @@ def upload_file():
          f.save('uploads/'+f.filename)
          name = request.form.get("username")
          quality = request.form.get("quality")
+         email = request.form.get("email")
 
          #Insert values into database
          with sql.connect("printer.db") as db:
             head = db.cursor()
-            head.execute("INSERT INTO files (name,quality,filename) VALUES (?,?,?)", (name,quality,f.filename))
+            head.execute("INSERT INTO files (name,quality,filename,contact) VALUES (?,?,?,?)", (name,quality,f.filename,email))
             db.commit()
-         return 'file uploaded successfully. <a href=/upload>go back</a> or <a href=/files>list files</a>'
+         return redirect(url_for('list_files'))
       else:
          return 'not an STL file. try again. <a href=/upload>go back</a>'
 
@@ -80,7 +81,13 @@ def delete_file(filename):
       db.commit()
    os.remove("./uploads/"+filename)
    return redirect(url_for('list_files'))
+
+@app.route('/contact/<name>')
+def contact(name):
+   return(name)
    
+
+
    
       
 		

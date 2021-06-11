@@ -41,7 +41,7 @@
 	<tbody>
 	  {% for row in data %}
 	  <tr>
-	    <td>{{row[0]}}</td>
+	    <td>{{row[0]}} (<i>{{row[3]}}</i>)</td>
 	    <td>{{row[1]}}</td>
 	    <td>{{row[2]}}</td>
 	    <td><a class="btn btn-outline-primary" href="/download/{{row[2]}}">Download</a> <a class="btn btn-outline-danger" href="/delete/{{row[2]}}">Delete</a></td>
